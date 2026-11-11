@@ -1,0 +1,1874 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do rover da Equipe Titans">
+      
+      
+      
+        <link rel="canonical" href="https://luizfaria1989.github.io/p_rover/pages/estudos/yolo/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../../ferramentas/">
+      
+      
+      <link rel="icon" href="../../../assets/titansIco.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Estudo da família YOLO - Rover</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/styles.css">
+    
+      <link rel="stylesheet" href="../../../overrides/tabelas.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estudo-da-familia-yolo" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="Rover" class="md-header__button md-logo" aria-label="Rover" data-md-component="logo">
+      
+  <img src="../../../assets/titans.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rover
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Estudo da família YOLO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mude para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mude para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/luizfaria1989/p_rover" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    repo-rover
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bioV2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bio-V2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Estudos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../ferramentas/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ferramentas
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rover" class="md-nav__button md-logo" aria-label="Rover" data-md-component="logo">
+      
+  <img src="../../../assets/titans.png" alt="logo">
+
+    </a>
+    Rover
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/luizfaria1989/p_rover" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    repo-rover
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bioV2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Bio-V2
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bio-V2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bioV2/mec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mecânica
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bioV2/eletr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Eletrônica
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bioV2/contro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bioV2/soft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Estudos
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Estudos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão Computacional
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão Computacional
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Estudo da família YOLO
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estudo da família YOLO
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sumário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-evolucao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evolução arquitetural
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Evolução arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-da-deteccao-por-anchors-a-head-anchor-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Da detecção por anchors à head anchor-free
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-trade-offs-entre-as-variantes-nano-small-e-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Trade-offs entre as variantes nano, small e medium
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceitos-de-metricas-e-formato-do-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Conceitos de métricas e formato do dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceitos de métricas e formato do dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-metricas-aplicadas-ao-cenario-do-rover" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Métricas aplicadas ao cenário do rover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-formato-de-anotacao-exigido-pela-ultralytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Formato de anotação exigido pela Ultralytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tabela-comparativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tabela comparativa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recomendacao-para-o-prototipo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Recomendação para o Protótipo 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Recomendação para o Protótipo 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-premissas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Premissas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-variante-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Variante recomendada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-se-o-hardware-for-outro" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Se o hardware for outro
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Próximos passos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ferramentas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sumário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-evolucao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evolução arquitetural
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Evolução arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-da-deteccao-por-anchors-a-head-anchor-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Da detecção por anchors à head anchor-free
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-trade-offs-entre-as-variantes-nano-small-e-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Trade-offs entre as variantes nano, small e medium
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceitos-de-metricas-e-formato-do-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Conceitos de métricas e formato do dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceitos de métricas e formato do dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-metricas-aplicadas-ao-cenario-do-rover" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Métricas aplicadas ao cenário do rover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-formato-de-anotacao-exigido-pela-ultralytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Formato de anotação exigido pela Ultralytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tabela-comparativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tabela comparativa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recomendacao-para-o-prototipo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Recomendação para o Protótipo 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Recomendação para o Protótipo 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-premissas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Premissas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-variante-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Variante recomendada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-se-o-hardware-for-outro" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Se o hardware for outro
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Próximos passos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="estudo-da-familia-yolo">Estudo da família YOLO<a class="headerlink" href="#estudo-da-familia-yolo" title="Permanent link">&para;</a></h1>
+<p><strong>Evolução YOLOv5 → YOLOv8 → YOLO11 e escolha do modelo para o P1</strong></p>
+<ul>
+<li><strong>Equipe:</strong> Equipe Titans</li>
+<li><strong>Projeto:</strong> Rover — Protótipo 1 (P1)</li>
+<li><strong>Responsáveis:</strong> Luiz, Roberto, Thomas</li>
+<li><strong>Data:</strong> 3 de novembro de 2026</li>
+</ul>
+<hr />
+<h2 id="sumario">Sumário<a class="headerlink" href="#sumario" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#1-evolucao-arquitetural">1. Evolução arquitetural</a></li>
+<li><a href="#2-conceitos-de-metricas-e-formato-do-dataset">2. Conceitos de métricas e formato do dataset</a></li>
+<li><a href="#3-tabela-comparativa">3. Tabela comparativa</a></li>
+<li><a href="#4-recomendacao-para-o-prototipo-1">4. Recomendação para o Protótipo 1</a></li>
+<li><a href="#5-proximos-passos">5. Próximos passos</a></li>
+<li><a href="#referencias">Referências</a></li>
+<li><a href="#historico-de-versoes">Histórico de versões</a></li>
+</ul>
+<hr />
+<h2 id="1-evolucao-arquitetural">1. Evolução arquitetural<a class="headerlink" href="#1-evolucao-arquitetural" title="Permanent link">&para;</a></h2>
+<p>As três versões seguem a mesma divisão em três partes. O backbone extrai características da imagem em resoluções decrescentes. O neck combina mapas de escalas diferentes (caminhos FPN e PAN) para representar bem objetos pequenos e grandes. A head faz as previsões finais em três escalas (P3, P4 e P5, com redução de 8, 16 e 32 vezes). De uma versão para outra, o que mais muda é o bloco repetido do backbone e do neck (C3 → C2f → C3k2), o formato da head e a forma de escolher, no treino, quais previsões contam como acerto <a href="#ref-10">[10]</a>.</p>
+<pre class="mermaid"><code>flowchart TB
+  img["Imagem&lt;br&gt;640 × 640"] --&gt; bb
+
+  subgraph bb["Backbone: extrai características"]
+    stem["Stem (conv)"] --&gt; b3["P3 · ÷8&lt;br&gt;80 × 80"]
+    b3 --&gt; b4["P4 · ÷16&lt;br&gt;40 × 40"]
+    b4 --&gt; b5["P5 · ÷32&lt;br&gt;20 × 20"]
+    b5 --&gt; sppf["SPPF&lt;br&gt;(+ C2PSA no YOLO11)"]
+  end
+
+  subgraph nk["Neck: combina as escalas"]
+    fpn["FPN: desce de P5 a P3&lt;br&gt;upsample + concat"] --&gt; pan["PAN: sobe de P3 a P5&lt;br&gt;downsample + concat"]
+  end
+
+  subgraph hd["Head: prevê caixas e classes"]
+    h3["P3&lt;br&gt;objetos pequenos"]
+    h4["P4&lt;br&gt;objetos médios"]
+    h5["P5&lt;br&gt;objetos grandes"]
+  end
+
+  bb -- "mapas P3, P4 e P5" --&gt; nk
+  nk -- "mapas P3, P4 e P5" --&gt; hd
+  hd --&gt; nms["NMS"] --&gt; out["Detecções finais"]</code></pre>
+<p><strong>Figura 1:</strong> Estrutura comum ao YOLOv5, YOLOv8 e YOLO11. Cada etapa do backbone e do neck usa o bloco repetido da versão (C3, C2f ou C3k2). O neck recebe os mapas das três escalas: desce de P5 para P3 (FPN), levando contexto às escalas finas, e depois sobe de volta (PAN), levando detalhe às escalas grossas. Cada escala tem a sua head.</p>
+<ul>
+<li><strong>YOLOv5 → YOLOv8:</strong> o bloco C2f concatena as saídas de todos os gargalos internos, não só a última, o que melhora o fluxo de gradiente. A head ganha ramos separados para classe e caixa, perde o objectness e abandona os anchors. As previsões positivas passam a ser escolhidas pelo Task-Aligned Assigner, que combina a pontuação da classe com o IoU da caixa prevista. A regressão ganha a DFL (<em>Distribution Focal Loss</em>), que trata cada lado da caixa como uma distribuição em vez de um número só <a href="#ref-11">[11]</a>.</li>
+<li><strong>YOLOv8 → YOLO11:</strong> o C3k2 substitui o C2f. É uma variante cujo bloco interno pode ser um gargalo simples ou um bloco C3k, com tamanho de kernel configurável. Depois do SPPF entra o C2PSA, um bloco de atenção espacial que ajuda o modelo a focar nas regiões relevantes da imagem <a href="#ref-10">[10]</a>, <a href="#ref-17">[17]</a>. A head e a perda continuam as do YOLOv8. O resultado é um modelo mais enxuto: o YOLO11m tem 22% menos parâmetros que o YOLOv8m e mAP maior no COCO <a href="#ref-6">[6]</a>.</li>
+</ul>
+<p><strong>Tabela 1:</strong> Visão geral das mudanças por versão.</p>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Backbone / neck</th>
+<th>Head</th>
+<th>Loss / atribuição</th>
+<th>Pós-proc.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLOv5 (2020)</td>
+<td>CSPDarknet com C3; stem conv 6 × 6; SPPF; neck PANet</td>
+<td>Acoplada, baseada em anchors (3/célula), com <em>objectness</em></td>
+<td>BCE (obj + cls) + CIoU; atribuição por razão de forma</td>
+<td>NMS</td>
+</tr>
+<tr>
+<td>YOLOv8 (2023)</td>
+<td>Blocos C2f; stem conv 3 × 3; SPPF; neck PANet com C2f</td>
+<td>Desacoplada, anchor-free, sem <em>objectness</em></td>
+<td>BCE + CIoU + DFL; Task-Aligned Assigner</td>
+<td>NMS</td>
+</tr>
+<tr>
+<td>YOLO11 (2024)</td>
+<td>Blocos C3k2; SPPF + C2PSA (atenção espacial)</td>
+<td>Desacoplada, anchor-free; ramo de classe com convs <em>depthwise</em></td>
+<td>Igual ao YOLOv8</td>
+<td>NMS</td>
+</tr>
+<tr>
+<td>YOLO12 (2025)</td>
+<td>C3k2 nos estágios iniciais; A2C2f (<em>Area Attention</em> + R-ELAN) em P4/P5 e no neck</td>
+<td>Igual ao YOLO11</td>
+<td>Igual ao YOLOv8</td>
+<td>NMS</td>
+</tr>
+<tr>
+<td>YOLO26 (2026)</td>
+<td>Igual ao YOLO11 (C3k2, SPPF, C2PSA)</td>
+<td>Anchor-free, sem DFL; head one-to-one (end-to-end)</td>
+<td>ProgLoss + STAL; otimizador MuSGD</td>
+<td>NMS-free</td>
+</tr>
+<tr>
+<td>YOLO27 (2026*)</td>
+<td>n/s: CNN simplificada, prediz em 2 escalas*(não 3); m: backbone estilo YOLO26 + decoder transformer</td>
+<td>n/s: one-to-many + one-to-one opcional; m: baseada em queries</td>
+<td>Não divulgada; n/s têm ramo de alinhamento de <em>foreground</em> só no treino</td>
+<td>n/s: NMS‡<br>m: NMS-free</td>
+</tr>
+</tbody>
+</table>
+<div class="nota-tabela">
+<p>* Anunciado em 13/09/2026; ainda sem pesos, sem suporte no pacote <code>ultralytics</code> e sem data de lançamento. ‡ NMS por padrão; NMS-free com <code>nms=False</code>.</p>
+</div>
+<h3 id="11-da-deteccao-por-anchors-a-head-anchor-free">1.1 Da detecção por anchors à head anchor-free<a class="headerlink" href="#11-da-deteccao-por-anchors-a-head-anchor-free" title="Permanent link">&para;</a></h3>
+<p><strong>Como o YOLOv5 usa anchors.</strong> Cada célula da grade, em cada escala, recebe três caixas de referência com proporções fixas, os <em>anchors</em>. A rede não prevê a caixa diretamente: prevê ajustes de posição e de escala sobre cada anchor, mais a probabilidade de haver um objeto ali (<em>objectness</em>). No treino, um objeto anotado só é atribuído aos anchors cuja forma se parece com a dele.</p>
+<p><strong>Problemas dessa abordagem:</strong></p>
+<ul>
+<li>Os anchors são hiperparâmetros ligados ao dataset. Os do COCO não necessariamente servem para os objetos do ERC e precisam ser recalculados por agrupamento (k-means) das caixas anotadas.</li>
+<li>Várias previsões por célula geram muito mais caixas candidatas, o que pesa no NMS.</li>
+<li>A atribuição por semelhança de forma é fixa e ignora a qualidade real da previsão.</li>
+</ul>
+<p><strong>Como funciona a head anchor-free do YOLOv8 e do YOLO11.</strong> Cada ponto da grade prevê diretamente as distâncias até os quatro lados da caixa (esquerda, topo, direita e base), cada uma como uma distribuição treinada com DFL. Não há caixas de referência nem ramo de <em>objectness</em>, e as previsões positivas são escolhidas dinamicamente pelo Task-Aligned Assigner <a href="#ref-11">[11]</a>.</p>
+<pre class="mermaid"><code>flowchart TB
+  %% O Mermaid desenha o último bloco à esquerda: o YOLOv8 vem primeiro aqui
+  subgraph v8["YOLOv8 e YOLO11: head desacoplada, anchor-free"]
+    b0["Mapa de características&lt;br&gt;(uma escala)"] --&gt; b1["Ramo de caixa"]
+    b0 --&gt; b2["Ramo de classe"]
+    b1 --&gt; b3["Distâncias até os 4 lados&lt;br&gt;(distribuições, DFL)"]
+    b2 --&gt; b4["Pontuação por classe"]
+    b3 &amp; b4 -. "só no treino" .-&gt; b5["Task-Aligned Assigner&lt;br&gt;(classe × IoU)"]
+  end
+
+  subgraph v5["YOLOv5: head acoplada, com anchors"]
+    a0["Mapa de características&lt;br&gt;(uma escala)"] --&gt; a1["Um único conv 1 × 1"]
+    a1 --&gt; a2["Para cada um dos 3 anchors:&lt;br&gt;ajuste de x, y, w, h&lt;br&gt;+ objectness + classes"]
+    a2 -. "só no treino" .-&gt; a3["Atribuição por&lt;br&gt;semelhança de forma"]
+  end</code></pre>
+<p><strong>Figura 2:</strong> O que a head prevê em cada ponto da grade, em uma escala. A atribuição (linha tracejada) só acontece no treino e decide quais previsões contam como positivas.</p>
+<p><strong>Vantagens para o rover:</strong></p>
+<ol>
+<li><strong>Menos hiperparâmetros:</strong> não é preciso recalcular anchors a cada dataset novo.</li>
+<li><strong>Melhor generalização</strong> para objetos com formas que não aparecem no COCO, como sondas, ferramentas e componentes de painel.</li>
+<li><strong>Menos previsões por imagem:</strong> NMS mais rápido e pós-processamento mais simples de portar para ONNX, NCNN ou TensorRT.</li>
+<li><strong>Treino mais estável,</strong> porque a escolha dos positivos acompanha a qualidade das previsões.</li>
+</ol>
+<p><strong>Evidência numérica.</strong> A Ultralytics publicou o YOLOv5u, que mantém o backbone e o neck do YOLOv5, mas troca a head pela head anchor-free e sem <em>objectness</em> do YOLOv8 <a href="#ref-12">[12]</a>.</p>
+<p><strong>Tabela 2:</strong> Efeito da head anchor-free no YOLOv5s (COCO val2017, entrada 640 × 640).</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Head</th>
+<th style="text-align: right;">Params (M)</th>
+<th style="text-align: right;">GFLOPs</th>
+<th style="text-align: right;">mAP₅₀₋₉₅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLOv5s <a href="#ref-1">[1]</a></td>
+<td>Baseada em anchors</td>
+<td style="text-align: right;">7,2</td>
+<td style="text-align: right;">16,5</td>
+<td style="text-align: right;">37,4</td>
+</tr>
+<tr>
+<td>YOLOv5su <a href="#ref-12">[12]</a></td>
+<td>Anchor-free</td>
+<td style="text-align: right;">9,1</td>
+<td style="text-align: right;">24,0</td>
+<td style="text-align: right;">43,0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A troca de head veio junto com o pipeline de treino do pacote <code>ultralytics</code>, então parte dos +5,6 pontos também vem do treino. Mesmo assim, é a comparação mais direta do efeito da head anchor-free, e ela custa cerca de 45% a mais de FLOPs.</p>
+</div>
+<h3 id="12-trade-offs-entre-as-variantes-nano-small-e-medium">1.2 Trade-offs entre as variantes nano, small e medium<a class="headerlink" href="#12-trade-offs-entre-as-variantes-nano-small-e-medium" title="Permanent link">&para;</a></h3>
+<p><strong>Tabela 3:</strong> Variantes n/s/m (COCO val2017, entrada 640 × 640). Latências em ms. Fontes: <a href="#ref-1">[1]</a>, <a href="#ref-2">[2]</a>, <a href="#ref-3">[3]</a>, <a href="#ref-4">[4]</a>, <a href="#ref-5">[5]</a>, <a href="#ref-6">[6]</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Modelo</th>
+<th style="text-align: right;">Params (M)</th>
+<th style="text-align: right;">GFLOPs</th>
+<th style="text-align: right;">mAP₅₀₋₉₅</th>
+<th style="text-align: right;">CPU</th>
+<th style="text-align: right;">GPU</th>
+<th style="text-align: right;">No rover</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>YOLOv5</strong>ᵃ</td>
+<td>YOLOv5n</td>
+<td style="text-align: right;">1,9</td>
+<td style="text-align: right;">4,5</td>
+<td style="text-align: right;">28,0</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">6,3</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLOv5s</td>
+<td style="text-align: right;">7,2</td>
+<td style="text-align: right;">16,5</td>
+<td style="text-align: right;">37,4</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">6,4</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLOv5m</td>
+<td style="text-align: right;">21,2</td>
+<td style="text-align: right;">49,0</td>
+<td style="text-align: right;">45,4</td>
+<td style="text-align: right;">224</td>
+<td style="text-align: right;">8,2</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td><strong>YOLOv8</strong>ᵇ</td>
+<td>YOLOv8n</td>
+<td style="text-align: right;">3,2</td>
+<td style="text-align: right;">8,7</td>
+<td style="text-align: right;">37,3</td>
+<td style="text-align: right;">80,4</td>
+<td style="text-align: right;">0,99</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLOv8s</td>
+<td style="text-align: right;">11,2</td>
+<td style="text-align: right;">28,6</td>
+<td style="text-align: right;">44,9</td>
+<td style="text-align: right;">128,4</td>
+<td style="text-align: right;">1,20</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLOv8m</td>
+<td style="text-align: right;">25,9</td>
+<td style="text-align: right;">78,9</td>
+<td style="text-align: right;">50,2</td>
+<td style="text-align: right;">234,7</td>
+<td style="text-align: right;">1,83</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td><strong>YOLO11</strong>ᶜ</td>
+<td>YOLO11n</td>
+<td style="text-align: right;">2,6</td>
+<td style="text-align: right;">6,5</td>
+<td style="text-align: right;">39,5</td>
+<td style="text-align: right;">56,1</td>
+<td style="text-align: right;">1,5</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO11s</td>
+<td style="text-align: right;">9,4</td>
+<td style="text-align: right;">21,6</td>
+<td style="text-align: right;">47,0</td>
+<td style="text-align: right;">90,0</td>
+<td style="text-align: right;">2,5</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO11m</td>
+<td style="text-align: right;">20,1</td>
+<td style="text-align: right;">68,1</td>
+<td style="text-align: right;">51,5</td>
+<td style="text-align: right;">183,2</td>
+<td style="text-align: right;">4,7</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td><strong>YOLO12</strong>ᵈ</td>
+<td>YOLO12n</td>
+<td style="text-align: right;">2,6</td>
+<td style="text-align: right;">7,5</td>
+<td style="text-align: right;">40,6</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">1,64</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO12s</td>
+<td style="text-align: right;">9,3</td>
+<td style="text-align: right;">23,3</td>
+<td style="text-align: right;">48,0</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">2,61</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO12m</td>
+<td style="text-align: right;">20,2</td>
+<td style="text-align: right;">70,7</td>
+<td style="text-align: right;">52,5</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">4,86</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td><strong>YOLO26</strong>ᵉ</td>
+<td>YOLO26n</td>
+<td style="text-align: right;">2,4</td>
+<td style="text-align: right;">5,5</td>
+<td style="text-align: right;">40,1</td>
+<td style="text-align: right;">38,9</td>
+<td style="text-align: right;">1,7</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO26s</td>
+<td style="text-align: right;">9,5</td>
+<td style="text-align: right;">20,9</td>
+<td style="text-align: right;">47,8</td>
+<td style="text-align: right;">87,2</td>
+<td style="text-align: right;">2,5</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO26m</td>
+<td style="text-align: right;">20,4</td>
+<td style="text-align: right;">68,4</td>
+<td style="text-align: right;">52,5</td>
+<td style="text-align: right;">220,0</td>
+<td style="text-align: right;">4,7</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td><strong>YOLO27</strong>ᶠ</td>
+<td>YOLO27n</td>
+<td style="text-align: right;">3,0</td>
+<td style="text-align: right;">7,2</td>
+<td style="text-align: right;">42,6</td>
+<td style="text-align: right;">16,1</td>
+<td style="text-align: right;">0,44</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO27s</td>
+<td style="text-align: right;">11,8</td>
+<td style="text-align: right;">28,2</td>
+<td style="text-align: right;">50,1</td>
+<td style="text-align: right;">33,2</td>
+<td style="text-align: right;">0,64</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>YOLO27m</td>
+<td style="text-align: right;">22,8</td>
+<td style="text-align: right;">65,0</td>
+<td style="text-align: right;">56,1</td>
+<td style="text-align: right;">74,8</td>
+<td style="text-align: right;">1,01</td>
+<td style="text-align: right;"><mark>[–]</mark></td>
+</tr>
+</tbody>
+</table>
+<div class="nota-tabela">
+<ul>
+<li>ᵃ YOLOv5 v7.0 (anchor-based): CPU PyTorch, GPU NVIDIA V100 (batch 1).</li>
+<li>ᵇ YOLOv8: CPU ONNX, GPU NVIDIA A100 TensorRT.</li>
+<li>ᶜ YOLO11: CPU ONNX, GPU NVIDIA T4 TensorRT 10.</li>
+<li>ᵈ YOLO12: GPU NVIDIA T4 TensorRT FP16; a documentação não publica latência em CPU.</li>
+<li>ᵉ YOLO26: CPU ONNX, GPU NVIDIA T4 TensorRT 10, modo NMS-free; mAP do modo end-to-end (com a head one-to-many + NMS: 40,9 / 48,6 / 53,1); params e FLOPs do modelo fundido.</li>
+<li>ᶠ YOLO27 (<strong>preliminar, não lançado</strong>): CPU ONNX, GPU NVIDIA RTX PRO 6000 TensorRT 11; params e FLOPs do modelo fundido. A Ultralytics diz que o YOLO27n/s tem velocidade praticamente igual à do YOLO26n/s, então a CPU diferente deve explicar a latência bem menor.</li>
+</ul>
+<p>As latências de YOLO11, YOLO12 e YOLO26 (T4) são comparáveis entre si; as demais vêm de outras máquinas e só se comparam entre tamanhos da mesma versão. A coluna “No rover” deve ser preenchida com <code>yolo benchmark</code> <a href="#ref-7">[7]</a> executado no hardware real do rover.</p>
+</div>
+<div align="center">
+<p><img alt="Gráfico de mAP50-95 no COCO versus número de parâmetros (milhões) para YOLOv5, YOLOv8, YOLO11, YOLO12, YOLO26 e YOLO27, com três pontos (n, s, m) por versão." src="../dados/estudo-yolo-figura-1.png" width="900" /></p>
+</div>
+<p><strong>Figura 3:</strong> Precisão versus tamanho do modelo. Em cada curva, os três pontos são as variantes n, s e m, da esquerda para a direita. YOLO11, YOLO12 e YOLO26 ficam acima e à esquerda do YOLOv5 e do YOLOv8: mais mAP com menos parâmetros. A curva tracejada do YOLO27 usa dados preliminares de um modelo ainda não lançado.</p>
+<p><strong>Latência de referência no Raspberry Pi 5.</strong> Enquanto a coluna “No rover” não é medida, os benchmarks oficiais da Ultralytics no Raspberry Pi 5 servem de referência. A Ultralytics só publica as variantes n e s, porque considera as maiores pesadas demais para o Pi <a href="#ref-14">[14]</a>.</p>
+<p><strong>Tabela 4:</strong> Inferência no Raspberry Pi 5, só CPU, FP32, entrada 640 × 640, formato NCNN. FPS calculados como 1000 / ms.</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th style="text-align: right;">Inferência (ms)</th>
+<th style="text-align: right;">FPS (só inferência)</th>
+<th>Versão do benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLO11n</td>
+<td style="text-align: right;">93,9</td>
+<td style="text-align: right;">10,6</td>
+<td><code>ultralytics</code> 8.3.39</td>
+</tr>
+<tr>
+<td>YOLO11s</td>
+<td style="text-align: right;">197,4</td>
+<td style="text-align: right;">5,1</td>
+<td><code>ultralytics</code> 8.3.39</td>
+</tr>
+<tr>
+<td>YOLO26n</td>
+<td style="text-align: right;">67,0</td>
+<td style="text-align: right;">14,9</td>
+<td><code>ultralytics</code> 8.4.108</td>
+</tr>
+<tr>
+<td>YOLO26s</td>
+<td style="text-align: right;">172,9</td>
+<td style="text-align: right;">5,8</td>
+<td><code>ultralytics</code> 8.4.108</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Esses tempos não incluem captura da câmera, pré-processamento nem pós-processamento. Em uso real, conte com algo próximo de metade desses FPS (estimativa) até medir no hardware do rover.</p>
+</div>
+<p><strong>Leitura dos trade-offs:</strong></p>
+<ul>
+<li><strong>n → s:</strong> no YOLO11, 3,6× mais parâmetros e 3,3× mais FLOPs por +7,5 pontos de mAP. No Pi 5, a latência dobra (Tabela 4).</li>
+<li><strong>s → m:</strong> 2,1× mais parâmetros e 3,2× mais FLOPs por só +4,5 pontos. O YOLOv8 repete o padrão (+7,6 e depois +5,3). Os ganhos diminuem a cada degrau.</li>
+<li><strong>No rover,</strong> quem decide é a latência no hardware real. No Pi 5 só com CPU, o <em>medium</em> fica fora, o <em>small</em> fica abaixo de tempo real e o <em>nano</em> é o único que se aproxima dele.</li>
+<li><strong>Entre gerações,</strong> o YOLO11n supera o YOLOv5s em mAP (39,5 contra 37,4) com menos da metade dos FLOPs. Trocar de geração rende mais do que subir de tamanho numa versão antiga.</li>
+</ul>
+<h2 id="2-conceitos-de-metricas-e-formato-do-dataset">2. Conceitos de métricas e formato do dataset<a class="headerlink" href="#2-conceitos-de-metricas-e-formato-do-dataset" title="Permanent link">&para;</a></h2>
+<h3 id="21-metricas-aplicadas-ao-cenario-do-rover">2.1 Métricas aplicadas ao cenário do rover<a class="headerlink" href="#21-metricas-aplicadas-ao-cenario-do-rover" title="Permanent link">&para;</a></h3>
+<p>Uma detecção é verdadeiro positivo (TP) quando a classe está correta e a sobreposição com a caixa real ultrapassa um limiar de IoU (<em>Intersection over Union</em>):</p>
+<div class="arithmatex">\[
+\text{IoU} = \frac{|B_{\text{pred}} \cap B_{\text{real}}|}{|B_{\text{pred}} \cup B_{\text{real}}|}
+\]</div>
+<p>Caso contrário, é falso positivo (FP). Um objeto real que não foi detectado é um falso negativo (FN). Classes do rover: <mark>[ex.: obstáculo, rocha, marcador ArUco, ferramenta]</mark>. As definições seguem o guia de métricas da Ultralytics <a href="#ref-8">[8]</a> e o protocolo do COCO <a href="#ref-9">[9]</a>.</p>
+<p><strong>Tabela 5:</strong> Métricas de detecção. <span class="arithmatex">\(\text{AP}_c\)</span> é a <em>Average Precision</em> da classe <span class="arithmatex">\(c\)</span> e <span class="arithmatex">\(N\)</span> é o número de classes.</p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th style="text-align: center;">Definição</th>
+<th>Interpretação no rover</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precision</td>
+<td style="text-align: center;"><span class="arithmatex">\(\dfrac{TP}{TP + FP}\)</span></td>
+<td>Das detecções que o rover fez, quantas eram reais. Precision baixa gera <em>alarmes falsos</em>: o rover desvia ou para por obstáculos que não existem e perde tempo de missão.</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td style="text-align: center;"><span class="arithmatex">\(\dfrac{TP}{TP + FN}\)</span></td>
+<td>Dos objetos que estavam na cena, quantos o rover encontrou. Recall baixo significa <em>obstáculo não visto</em> (risco de colisão) ou alvo da missão perdido. Para segurança, é a métrica mais crítica.</td>
+</tr>
+<tr>
+<td>mAP₅₀</td>
+<td style="text-align: center;"><span class="arithmatex">\(\dfrac{1}{N}\sum_{c=1}^{N} AP_c^{\,\text{IoU}=0{,}5}\)</span></td>
+<td>Média, entre as classes, da área sob a curva Precision×Recall com IoU ≥ 0,5. Mede se o rover <em>encontra e identifica</em> os objetos, aceitando caixas aproximadas. Basta para decisões do tipo “há um obstáculo à frente”.</td>
+</tr>
+<tr>
+<td>mAP₅₀₋₉₅</td>
+<td style="text-align: center;"><span class="arithmatex">\(\dfrac{1}{10}\sum_{t\in\{0{,}50,\dots,0{,}95\}} \text{mAP}_t\)</span></td>
+<td>Média do mAP em 10 limiares de IoU (de 0,50 a 0,95, passo 0,05). Premia caixas <em>bem ajustadas</em>. Importa quando a posição exata da caixa alimenta outra etapa, como estimar a distância de um objeto, alinhar o rover a um alvo ou agarrar com o braço.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observação prática:</strong> o limiar de confiança (<code>conf</code>) usado na inferência move o ponto de operação. Um <code>conf</code> baixo aumenta o recall e reduz a precision; um <code>conf</code> alto faz o contrário. Para o rover, sugere-se escolher o <code>conf</code> pela curva P–R de validação, priorizando recall nas classes de obstáculo. Meta do P1: mAP₅₀ ≥ <mark>[definir]</mark> e recall (obstáculos) ≥ <mark>[definir]</mark>.</p>
+<h3 id="22-formato-de-anotacao-exigido-pela-ultralytics">2.2 Formato de anotação exigido pela Ultralytics<a class="headerlink" href="#22-formato-de-anotacao-exigido-pela-ultralytics" title="Permanent link">&para;</a></h3>
+<p>Cada imagem do dataset tem um arquivo <code>.txt</code> com o mesmo nome. Imagens sem objetos não precisam de arquivo. Cada linha descreve um objeto no formato <code>class x_center y_center width height</code>, com as coordenadas normalizadas entre 0 e 1 <a href="#ref-13">[13]</a>. As pastas <code>images/</code> e <code>labels/</code> espelham uma à outra, e um arquivo YAML indica onde ficam os conjuntos de treino e validação e quais são os nomes das classes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>datasets/rover/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── data.yaml
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── images/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── train/   marsyard_0042.jpg ...
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── val/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── labels/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ├── train/   marsyard_0042.txt ...
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    └── val/
+</code></pre></div>
+<p><strong>Tabela 6:</strong> Os cinco valores de cada linha do arquivo de anotação.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td>Índice inteiro da classe, começando em 0, na ordem definida em <code>names</code> no YAML.</td>
+</tr>
+<tr>
+<td><code>x_center</code></td>
+<td>Coordenada horizontal do centro da caixa, dividida pela largura da imagem.</td>
+</tr>
+<tr>
+<td><code>y_center</code></td>
+<td>Coordenada vertical do centro da caixa, dividida pela altura da imagem.</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>Largura da caixa, dividida pela largura da imagem.</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>Altura da caixa, dividida pela altura da imagem.</td>
+</tr>
+</tbody>
+</table>
+<p>A origem é o canto superior esquerdo da imagem. Como os valores são normalizados, a mesma anotação continua válida quando a imagem é redimensionada para 640 ou 320 px no treino.</p>
+<p><strong>Exemplo.</strong> Uma foto de 1280 × 720 px com um objeto da classe 0 entre os pixels (500, 300) e (620, 420):</p>
+<div class="arithmatex">\[
+x_c = \frac{560}{1280} = 0{,}4375 \qquad
+y_c = \frac{360}{720} = 0{,}5 \qquad
+w = \frac{120}{1280} = 0{,}09375 \qquad
+h = \frac{120}{720} \approx 0{,}1667
+\]</div>
+<div class="highlight"><span class="filename">labels/train/marsyard_0042.txt</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>0 0.437500 0.500000 0.093750 0.166667
+</code></pre></div>
+<div class="highlight"><span class="filename">data.yaml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datasets/rover</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">images/train</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">images/val</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">names</span><span class="p">:</span><span class="w">            </span><span class="c1"># classes ilustrativas: usar as definidas na seção 2.1</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">obstaculo</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">marcador</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Incluir no treino algumas imagens do terreno sem nenhum objeto (sem arquivo <code>.txt</code>) ensina o modelo a não confundir rochas e sombras com alvos, o que melhora a precision.</p>
+</div>
+<h2 id="3-tabela-comparativa">3. Tabela comparativa<a class="headerlink" href="#3-tabela-comparativa" title="Permanent link">&para;</a></h2>
+<p><strong>Tabela 7:</strong> Variantes <em>small</em> das três versões estudadas (COCO val2017, entrada 640 × 640). Mesmas fontes da Tabela 3.</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th style="text-align: center;">Params (M) / GFLOPs / mAP₅₀₋₉₅</th>
+<th>Prós</th>
+<th>Contras</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLOv5s</td>
+<td style="text-align: center;">7,2 / 16,5 / 37,4</td>
+<td>Menos FLOPs dos três.<br>Muito maduro, com grande base de exemplos e tutoriais.</td>
+<td>Anchors precisam ser recalculados para o dataset.<br>mAP 9,6 pontos abaixo do YOLO11s.<br>Vive num repositório separado, com scripts próprios de treino e exportação.</td>
+</tr>
+<tr>
+<td>YOLOv8s</td>
+<td style="text-align: center;">11,2 / 28,6 / 44,9</td>
+<td>Head anchor-free e desacoplada.<br>Retém praticamente toda a precisão na quantização INT8ᵃ.<br>Suporte amplo de exportação.</td>
+<td>O mais pesado dos três em parâmetros e FLOPs.</td>
+</tr>
+<tr>
+<td>YOLO11s</td>
+<td style="text-align: center;">9,4 / 21,6 / 47,0</td>
+<td>Maior mAP com menos parâmetros e FLOPs que o YOLOv8s.<br>Mesma API e mesmos comandos de exportação do YOLOv8.</td>
+<td>O bloco de atenção C2PSA é mais sensível à quantização INT8ᵃ.</td>
+</tr>
+</tbody>
+</table>
+<div class="nota-tabela">
+<ul>
+<li>ᵃ No acelerador Hailo-8L, após a quantização INT8, o YOLOv8n retém cerca de 100% do mAP₅₀ e o YOLO11n, cerca de 96%. A Ultralytics atribui a diferença aos blocos de atenção do backbone <a href="#ref-15">[15]</a>. Só importa se o rover usar um acelerador que exija INT8.</li>
+</ul>
+</div>
+<p>Os outros modelos da Tabela 3 ficam fora do escopo pedido, mas valem uma nota. O YOLO12s tem mAP um pouco maior, porém a Ultralytics só publica pesos pré-treinados de detecção e recomenda YOLO11 ou YOLO26 para produção <a href="#ref-3">[3]</a>. O YOLO26s dispensa o NMS (head end-to-end), o que simplifica a exportação, e é o candidato natural para o P2 (seção 4.3).</p>
+<h2 id="4-recomendacao-para-o-prototipo-1">4. Recomendação para o Protótipo 1<a class="headerlink" href="#4-recomendacao-para-o-prototipo-1" title="Permanent link">&para;</a></h2>
+<h3 id="41-premissas">4.1 Premissas<a class="headerlink" href="#41-premissas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Hardware:</strong> <mark>[confirmar: Raspberry Pi 5 (8 GB), só CPU]</mark>. A recomendação abaixo assume esse cenário; a Tabela 8 mostra o que muda com outro hardware.</li>
+<li><strong>Taxa de quadros:</strong> <mark>[confirmar: ≥ 5 FPS de ponta a ponta na busca]</mark>. A 0,5 m/s, um rover que processa 5 quadros por segundo anda 10 cm entre um quadro e outro, o que basta para busca e navegação. O controle do braço em malha fechada se beneficia de 10 FPS ou mais.</li>
+</ul>
+<h3 id="42-variante-recomendada">4.2 Variante recomendada<a class="headerlink" href="#42-variante-recomendada" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Recomendação</p>
+<p><strong>YOLO11n</strong>, ajustado (<em>fine-tuning</em>) a partir de <code>yolo11n.pt</code>, com entrada de 640 × 640, exportado para <strong>NCNN</strong> para rodar no Raspberry Pi 5 e para <strong>ONNX</strong> como formato portátil.</p>
+</div>
+<p><strong>Justificativa:</strong></p>
+<ol>
+<li><strong>Hardware e FPS:</strong> no Pi 5, o YOLO11n em NCNN leva 93,9 ms por imagem (10,6 FPS só de inferência), contra 197,4 ms do YOLO11s (5,1 FPS) (Tabela 4). Contando captura e pós-processamento, o <em>small</em> fica abaixo da meta de 5 FPS mesmo no melhor caso. O <em>nano</em> fica perto da meta e ainda tem duas margens: reduzir a entrada para 416 ou 320 px ou passar para o YOLO26n (seção 4.3).</li>
+<li><strong>Precisão:</strong> entre as três versões estudadas, o YOLO11n tem o maior mAP na variante nano (39,5 contra 37,3 do YOLOv8n e 28,0 do YOLOv5n), com custo menor que o do YOLOv8n (6,5 contra 8,7 GFLOPs).</li>
+<li><strong>Exportação:</strong> no pacote <code>ultralytics</code>, cada formato é um único comando: <code>format=ncnn</code>, <code>format=onnx</code> ou <code>format=engine</code> para TensorRT <a href="#ref-18">[18]</a>. O YOLOv5 original exige o repositório antigo e outro script. O TensorRT só roda em GPU NVIDIA, então só entra se o rover usar uma Jetson.</li>
+<li><strong>Continuidade:</strong> o YOLO11 fica no mesmo ecossistema do YOLOv8 e do YOLO26, então trocar de modelo depois não exige reescrever o pipeline.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># treino (no PC ou no Colab)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>yolo<span class="w"> </span>detect<span class="w"> </span>train<span class="w"> </span><span class="nv">model</span><span class="o">=</span>yolo11n.pt<span class="w"> </span><span class="nv">data</span><span class="o">=</span>data.yaml<span class="w"> </span><span class="nv">imgsz</span><span class="o">=</span><span class="m">640</span><span class="w"> </span><span class="nv">epochs</span><span class="o">=</span><span class="m">100</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># exportação</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>yolo<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">model</span><span class="o">=</span>best.pt<span class="w"> </span><span class="nv">format</span><span class="o">=</span>ncnn<span class="w"> </span><span class="nv">imgsz</span><span class="o">=</span><span class="m">640</span><span class="w">   </span><span class="c1"># para rodar no Pi 5</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>yolo<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">model</span><span class="o">=</span>best.pt<span class="w"> </span><span class="nv">format</span><span class="o">=</span>onnx<span class="w"> </span><span class="nv">imgsz</span><span class="o">=</span><span class="m">640</span><span class="w">   </span><span class="c1"># formato portátil</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># medição no hardware do rover (preenche a coluna &quot;No rover&quot; da Tabela 3)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>yolo<span class="w"> </span>benchmark<span class="w"> </span><span class="nv">model</span><span class="o">=</span>best.pt<span class="w"> </span><span class="nv">data</span><span class="o">=</span>data.yaml<span class="w"> </span><span class="nv">imgsz</span><span class="o">=</span><span class="m">640</span><span class="w"> </span><span class="nv">device</span><span class="o">=</span>cpu
+</code></pre></div>
+<h3 id="43-se-o-hardware-for-outro">4.3 Se o hardware for outro<a class="headerlink" href="#43-se-o-hardware-for-outro" title="Permanent link">&para;</a></h3>
+<p><strong>Tabela 8:</strong> Recomendação conforme o hardware embarcado.</p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Modelo e formato</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 5, só CPU</td>
+<td>YOLO11n, NCNN</td>
+<td>Recomendação da seção 4.2.</td>
+</tr>
+<tr>
+<td>Raspberry Pi 5 + AI HAT+ (Hailo)</td>
+<td>YOLOv8s, HEF</td>
+<td>O YOLOv8 retém mais precisão na quantização INT8 desse acelerador, e o acelerador torna o <em>small</em> viável em tempo real. A exportação (<code>format=hailo</code>) precisa ser feita num PC com Linux x86_64 <a href="#ref-15">[15]</a>.</td>
+</tr>
+<tr>
+<td>NVIDIA Jetson (Orin Nano/NX)</td>
+<td>YOLO11s, TensorRT FP16</td>
+<td>Aqui o TensorRT entra de fato (<code>format=engine half=True</code>). Como referência, o YOLO11s roda a 7,91 ms em TensorRT FP16 numa Jetson Orin NX 16 GB <a href="#ref-16">[16]</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alternativa a medir no P2:</strong> o YOLO26n, que dispensa o NMS e mediu 67,0 ms em NCNN no Pi 5 (Tabela 4). Fica fora do escopo desta tarefa, mas vale um teste A/B contra o YOLO11n assim que houver dataset próprio.</p>
+<h2 id="5-proximos-passos">5. Próximos passos<a class="headerlink" href="#5-proximos-passos" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Confirmar o hardware do P1 e se haverá acelerador.</li>
+<li>Definir as classes do dataset e as metas de mAP₅₀ e recall da seção 2.1.</li>
+<li>Montar o dataset no formato da seção 2.2, com fotos sob sol, sombra e poeira e imagens de terreno sem objetos.</li>
+<li>Rodar <code>yolo benchmark</code> no hardware real e preencher a coluna “No rover” da Tabela 3.</li>
+<li>Confirmar com a equipe a licença AGPL-3.0 do pacote <code>ultralytics</code>, que exige publicar o código se o software for distribuído.</li>
+</ol>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ol>
+<li><span id="ref-1"></span>G. Jocher, <em>YOLOv5 by Ultralytics</em>, 2020. doi: <a href="https://doi.org/10.5281/zenodo.3908559">10.5281/zenodo.3908559</a>. Acesso em 2 de nov. de 2026. Endereço: <a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a>.</li>
+<li><span id="ref-2"></span>Ultralytics. “Ultralytics YOLO26,” <em>Ultralytics Docs</em>, acesso em 3 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolo26/">https://docs.ultralytics.com/models/yolo26/</a>.</li>
+<li><span id="ref-3"></span>Ultralytics. “YOLO12: Attention-Centric Object Detection,” <em>Ultralytics Docs</em>, acesso em 3 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolo12/">https://docs.ultralytics.com/models/yolo12/</a>.</li>
+<li><span id="ref-4"></span>Ultralytics. “Ultralytics YOLO27,” <em>Ultralytics Docs</em>, acesso em 3 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolo27/">https://docs.ultralytics.com/models/yolo27/</a>.</li>
+<li><span id="ref-5"></span>Ultralytics. “YOLOv8,” <em>Ultralytics Docs</em>, acesso em 2 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolov8/">https://docs.ultralytics.com/models/yolov8/</a>.</li>
+<li><span id="ref-6"></span>Ultralytics. “YOLO11,” <em>Ultralytics Docs</em>, acesso em 2 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolo11/">https://docs.ultralytics.com/models/yolo11/</a>.</li>
+<li><span id="ref-7"></span>Ultralytics. “Model Benchmarking with Ultralytics YOLO,” <em>Ultralytics Docs</em>, acesso em 2 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/modes/benchmark/">https://docs.ultralytics.com/modes/benchmark/</a>.</li>
+<li><span id="ref-8"></span>Ultralytics. “Performance Metrics Deep Dive,” <em>Ultralytics Docs</em>, acesso em 2 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/guides/yolo-performance-metrics/">https://docs.ultralytics.com/guides/yolo-performance-metrics/</a>.</li>
+<li><span id="ref-9"></span>T.-Y. Lin et al., “Microsoft COCO: Common Objects in Context,” em <em>European Conference on Computer Vision (ECCV)</em>, 2014, pp. 740–755.</li>
+<li><span id="ref-10"></span>Ultralytics. “YOLO Architecture Explained: From YOLOv3 to YOLO26,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/guides/yolo-architecture/">https://docs.ultralytics.com/guides/yolo-architecture/</a>.</li>
+<li><span id="ref-11"></span>OpenMMLab. “Algorithm principles and implementation with YOLOv8,” <em>MMYOLO Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://mmyolo.readthedocs.io/en/dev/recommended_topics/algorithm_descriptions/yolov8_description.html">https://mmyolo.readthedocs.io/en/dev/recommended_topics/algorithm_descriptions/yolov8_description.html</a>.</li>
+<li><span id="ref-12"></span>Ultralytics. “Ultralytics YOLOv5,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/models/yolov5/">https://docs.ultralytics.com/models/yolov5/</a>.</li>
+<li><span id="ref-13"></span>Ultralytics. “Object Detection Datasets Overview,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/datasets/detect/">https://docs.ultralytics.com/datasets/detect/</a>.</li>
+<li><span id="ref-14"></span>Ultralytics. “Quick Start Guide: Raspberry Pi with Ultralytics YOLO,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/guides/raspberry-pi/">https://docs.ultralytics.com/guides/raspberry-pi/</a>.</li>
+<li><span id="ref-15"></span>Ultralytics. “Hailo Export for Ultralytics YOLO Models,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/integrations/hailo/">https://docs.ultralytics.com/integrations/hailo/</a>.</li>
+<li><span id="ref-16"></span>Ultralytics. “Ultralytics YOLO11 on NVIDIA Jetson using DeepStream SDK and TensorRT,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/guides/deepstream-nvidia-jetson/">https://docs.ultralytics.com/guides/deepstream-nvidia-jetson/</a>.</li>
+<li><span id="ref-17"></span>R. Khanam e M. Hussain, “YOLOv11: An Overview of the Key Architectural Enhancements,” arXiv:2410.17725, 2024. Endereço: <a href="https://arxiv.org/abs/2410.17725">https://arxiv.org/abs/2410.17725</a>.</li>
+<li><span id="ref-18"></span>Ultralytics. “Model Export with Ultralytics YOLO,” <em>Ultralytics Docs</em>, acesso em 8 de nov. de 2026. Endereço: <a href="https://docs.ultralytics.com/modes/export/">https://docs.ultralytics.com/modes/export/</a>.</li>
+</ol>
+<hr />
+<h2 id="historico-de-versoes">Histórico de Versões<a class="headerlink" href="#historico-de-versoes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th style="text-align: center;">Data de Produção</th>
+<th style="text-align: center;">Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>0.1</code></td>
+<td>Versão inicial do estudo, com tabelas comparativas.</td>
+<td><a href="https://github.com/luizfaria1989">Luiz</a></td>
+<td style="text-align: center;">04/11/2026</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0.2</code></td>
+<td>Inclusão da transição para a head anchor-free, latência no Raspberry Pi 5, formato do dataset, tabela comparativa, recomendação para o P1 e próximos passos.</td>
+<td><a href="https://github.com/luizfaria1989">Luiz</a></td>
+<td style="text-align: center;">08/11/2026</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0.3</code></td>
+<td>Inclusão dos diagramas da arquitetura e da head (Figuras 1 e 2).</td>
+<td><a href="https://github.com/luizfaria1989">Luiz</a></td>
+<td style="text-align: center;">08/11/2026</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0.4</code></td>
+<td>Migração da documentação em Astro para o MkDocs</td>
+<td><a href="https://github.com/luizfaria1989">Luiz</a></td>
+<td style="text-align: center;">11/11/2026</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "navigation.tabs", "navigation.indexes", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

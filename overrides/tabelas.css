@@ -1,0 +1,100 @@
+/* ==========================================================
+   Estilos herdados da documentação antiga (Astro/Starlight)
+   Paleta Titans (roboticstitans.com.br)
+   Laranja #F15627 · Dourado #FAC938 · Vermelho #EE2B2B · Escuro #171312
+   ========================================================== */
+:root {
+  --titans-laranja: #f15627;
+  --titans-laranja-escuro: #d43f11;
+  --titans-dourado: #fac938;
+  --titans-vermelho: #ee2b2b;
+
+  --titans-tabela-zebra: rgba(0, 0, 0, 0.035);
+  --titans-mark-bg: rgba(238, 43, 43, 0.14);
+  --titans-mark-fg: #b3141a;
+}
+
+[data-md-color-scheme="slate"] {
+  --titans-tabela-zebra: rgba(255, 255, 255, 0.035);
+  --titans-mark-bg: rgba(238, 43, 43, 0.22);
+  --titans-mark-fg: #ff8a80;
+}
+
+/* ---------- Tabelas ---------- */
+/* Ocupa a largura toda; em telas pequenas rola para o lado (scrollwrap do Material) */
+.md-typeset__table {
+  width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+}
+
+.md-typeset table:not([class]) :is(th, td) {
+  padding: 0.6rem 0.75rem;
+}
+
+/* Cabeçalho colorido e em negrito */
+.md-typeset table:not([class]) th {
+  background-color: var(--titans-laranja-escuro);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Primeira coluna em negrito (títulos das linhas) */
+.md-typeset table:not([class]) td:first-child {
+  font-weight: 600;
+}
+
+/* Linhas alternadas */
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: var(--titans-tabela-zebra);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background-color: color-mix(in srgb, var(--titans-laranja) 12%, transparent);
+  box-shadow: none;
+}
+
+/* Fotos dentro de tabelas (ex.: integrantes): tamanho fixo, recortadas em quadrado */
+.md-typeset table:not([class]) td img {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+}
+
+.md-typeset table:not([class]) tr:has(img) td {
+  vertical-align: middle;
+}
+
+/* Notas de rodapé de tabelas: <div class="nota-tabela" markdown> ... </div> */
+.md-typeset .nota-tabela {
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ---------- Campos a preencher: <mark>[texto]</mark> ---------- */
+.md-typeset mark {
+  background-color: var(--titans-mark-bg);
+  color: var(--titans-mark-fg);
+  font-weight: 600;
+  padding: 0 0.25em;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+
+/* ---------- Figuras ---------- */
+.md-typeset img {
+  border-radius: 0.5rem;
+}
+
+/* ---------- Fórmulas (KaTeX) ---------- */
+/* Fórmulas em bloco largas rolam em telas pequenas */
+.md-typeset .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
