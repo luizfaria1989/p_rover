@@ -1,0 +1,89 @@
+site_name: Rover
+
+site_url: https://luizfaria1989.github.io/p_rover/
+repo_url: https://github.com/luizfaria1989/p_rover
+repo_name: repo-rover
+site_description: "Documentação do rover da Equipe Titans"
+
+nav:
+  - Home: index.md
+
+  - Bio-V2:
+    - Visão geral: pages/bioV2/index.md
+    - Mecânica: pages/bioV2/mec.md
+    - Eletrônica: pages/bioV2/eletr.md
+    - Controle: pages/bioV2/contro.md
+    - Software: pages/bioV2/soft.md
+
+  - Estudos:
+    - Sobre: pages/estudos/index.md
+    - Visão Computacional:
+      - Estudo da família YOLO: pages/estudos/yolo.md
+
+  - Ferramentas: ferramentas.md
+
+theme:
+  name: material
+  language: pt-BR
+
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.indexes
+    - header.autohide
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+
+  palette:
+
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/lightbulb-outline
+        name: Mude para o tema escuro
+
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/lightbulb
+        name: Mude para o tema claro
+
+
+  logo: assets/titans.png
+  favicon: assets/titansIco.ico
+  highlightjs: true
+
+extra_css:
+  - overrides/styles.css
+  - overrides/tabelas.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+
+# Fórmulas: $...$ no texto e $$...$$ em bloco (KaTeX)
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+
+markdown_extensions:
+    - admonition
+    - attr_list
+    - md_in_html
+    - tables
+    - toc:
+        permalink: true
+    - pymdownx.details
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.arithmatex:
+        generic: true
+    # Blocos ```mermaid viram diagramas
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
